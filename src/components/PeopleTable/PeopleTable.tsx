@@ -37,7 +37,7 @@ export const PeopleTable: React.FC<Props> = ({
       </thead>
 
       <tbody>
-        {people.map((p) => {
+        {people.map(p => {
           const mother = getMother(p);
           const father = getFather(p);
 
@@ -45,7 +45,9 @@ export const PeopleTable: React.FC<Props> = ({
             <tr
               key={p.slug}
               data-cy="person"
-              className={p.slug === selectedSlug ? 'has-background-warning' : ''}
+              className={
+                p.slug === selectedSlug ? 'has-background-warning' : ''
+              }
             >
               <td onClick={() => onSelectSlug(p.slug)}>
                 <Link
@@ -62,7 +64,10 @@ export const PeopleTable: React.FC<Props> = ({
 
               <td>
                 {mother ? (
-                  <Link to={`/people/${mother.slug}`} className="has-text-danger">
+                  <Link
+                    to={`/people/${mother.slug}`}
+                    className="has-text-danger"
+                  >
                     {mother.name}
                   </Link>
                 ) : (

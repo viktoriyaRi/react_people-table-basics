@@ -25,7 +25,9 @@ export const PeoplePage = () => {
 
   const byName = useMemo(() => {
     const m = new Map<string, Person>();
+
     people.forEach(p => m.set(p.name, p));
+
     return m;
   }, [people]);
 
