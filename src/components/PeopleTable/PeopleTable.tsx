@@ -1,5 +1,5 @@
-import { Link } from 'react-router-dom';
 import { Person } from '../../types/Person';
+import { PersonLink } from '../PersonLink/PersonLink';
 
 type Props = {
   people: Person[];
@@ -37,7 +37,7 @@ export const PeopleTable: React.FC<Props> = ({
       </thead>
 
       <tbody>
-        {people.map(p => {
+        {people.map((p) => {
           const mother = getMother(p);
           const father = getFather(p);
 
@@ -45,17 +45,10 @@ export const PeopleTable: React.FC<Props> = ({
             <tr
               key={p.slug}
               data-cy="person"
-              className={
-                p.slug === selectedSlug ? 'has-background-warning' : ''
-              }
+              className={p.slug === selectedSlug ? 'has-background-warning' : ''}
             >
               <td onClick={() => onSelectSlug(p.slug)}>
-                <Link
-                  to={`/people/${p.slug}`}
-                  className={p.sex === 'f' ? 'has-text-danger' : ''}
-                >
-                  {p.name}
-                </Link>
+                <PersonLink person={p} />
               </td>
 
               <td>{p.sex}</td>
@@ -64,12 +57,7 @@ export const PeopleTable: React.FC<Props> = ({
 
               <td>
                 {mother ? (
-                  <Link
-                    to={`/people/${mother.slug}`}
-                    className="has-text-danger"
-                  >
-                    {mother.name}
-                  </Link>
+                  <PersonLink person={mother} />
                 ) : (
                   p.motherName || '-'
                 )}
@@ -77,7 +65,7 @@ export const PeopleTable: React.FC<Props> = ({
 
               <td>
                 {father ? (
-                  <Link to={`/people/${father.slug}`}>{father.name}</Link>
+                  <PersonLink person={father} />
                 ) : (
                   p.fatherName || '-'
                 )}
